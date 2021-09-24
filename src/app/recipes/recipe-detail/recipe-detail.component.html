@@ -1,68 +1,48 @@
 <div class="row">
   <div class="col-xs-12">
-    <img src="{{DetailRecipe.imagePath}}" alt="{{DetailRecipe.name}}" class="img-responsive">
+    <img
+      [src]="DetailRecipe.imagePath"
+      alt="{{ DetailRecipe.name }}"
+      class="img-responsive"
+      style="max-height: 300px;">
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{DetailRecipe.name}}</h1>
+    <h1>{{ DetailRecipe.name }}</h1>
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    <div class="btn-group open">
-      <button class="btn btn-primary dropdown-toggle" type="button">Manage Recipe <span class="caret"></span></button>
+    <div
+      [class.open]="Open">
+      <button
+        (click)="onClickDialog()"
+        href='target="_self"'
+        type="button"
+        class="btn btn-primary dropdown-toggle">
+        Manage Recipe <span class="caret"></span>
+      </button>
       <ul class="dropdown-menu">
-        <li><a href="">To Shopping List</a></li>
-        <li><a href="">Edit Recipe</a></li>
-        <li><a href="">Delete Recipe</a></li>
+        <li><a href="#" (click)="setShoppongList(DetailRecipe.ingredients)">To Shopping List</a></li>
+        <li><a href="#">Edit Recipe</a></li>
+        <li><a href="#">Delete Recipe</a></li>
       </ul>
     </div>
   </div>
 </div>
-
 <div class="row">
   <div class="col-xs-12">
-    {{DetailRecipe.description}}
+    {{ DetailRecipe.description }}
   </div>
 </div>
 <div class="row">
   <div class="col-xs-12">
-    Ingredient
+    <ul class="list-group">
+      <a href="#" style="cursor: pointer" class="list-group-item"
+         *ngFor="let ingredient of DetailRecipe.ingredients">
+        {{ingredient.name}} => {{ingredient.ammount}}
+      </a>
+    </ul>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

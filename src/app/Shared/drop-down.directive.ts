@@ -1,18 +1,14 @@
-import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
+import {Directive, HostListener, HostBinding, ElementRef, Renderer2, Input} from '@angular/core';
 
 @Directive({
   selector: '[appDropDown]'
 })
 export class DropDownDirective {
 
-  @Input() set appdropDown(IsOpen: boolean) {
-    if (IsOpen) {
-      // this.temp.
-      // this.vcRef.createEmbeddedView(this.temp.)
-    }
-  }
+  @HostBinding('class.open') isOpen = false;
 
-  constructor(private temp: TemplateRef<any>, private vcRef: ViewContainerRef) {
+  @HostListener('click') toggleOpen() {
+    this.isOpen = !this.isOpen;
   }
 
 }

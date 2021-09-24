@@ -5,7 +5,6 @@
 </div>
 <div class="row">
   <div *ngFor="let recipe of recipes " class="col-xs-12">
-    <app-recipe-item [recipe]="recipe"
-     (RecipeChecked)="RecipeListChecked.emit(recipe)"></app-recipe-item>
+    <app-recipe-item [recipe]="recipe"></app-recipe-item>
   </div>
 </div>
