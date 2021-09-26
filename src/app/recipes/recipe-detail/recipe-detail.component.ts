@@ -2,6 +2,7 @@ import {Component, ElementRef, HostBinding, Input, OnInit, Renderer2} from '@ang
 import {Recipe} from "../recipe.model";
 import {ShoppingService} from "../../shopping-list/shopping.service";
 import {Ingredient} from "../../Shared/ingredient.model";
+import {ActivatedRoute, Data, Router, RouterLinkActive} from "@angular/router";
 
 @Component({
   selector: 'app-recipe-detail',
@@ -11,26 +12,31 @@ import {Ingredient} from "../../Shared/ingredient.model";
 export class RecipeDetailComponent implements OnInit {
   @Input('DetailRecipe') DetailRecipe: Recipe;
   isOpen = "btn-group";
-  Open=false;
+  Open = false;
 
-  constructor(private element: ElementRef, private rendrer: Renderer2,private ShoppingServices:ShoppingService) {
+  constructor(private element: ElementRef,
+              private rendrer: Renderer2,
+              private ShoppingServices: ShoppingService,
+              private router: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.router.data.subscribe((data: Data) => {
+      this.DetailRecipe = data['recipte'];
+    });
   }
 
-  setShoppongList(ingredients:Ingredient[]){
+  setShoppongList(ingredients: Ingredient[]) {
     this.ShoppingServices.setIngredients(ingredients);
   }
 
   onClickDialog() {
-    if (this.isOpen==="btn-group") {
+    if (this.isOpen === "btn-group") {
       this.isOpen = "btn-group open"
-      this.Open=true;
-    }
-    else{
-      this.isOpen="btn-group"
-      this.Open=false;
+      this.Open = true;
+    } else {
+      this.isOpen = "btn-group"
+      this.Open = false;
     }
   }
 }

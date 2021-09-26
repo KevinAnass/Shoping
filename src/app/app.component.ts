@@ -6,10 +6,5 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  isShoppingVisibel = true;
-
-  onShowClick(type: string) {
-    this.isShoppingVisibel = type === "Recipes" ? false : true;
-  }
 
 }
