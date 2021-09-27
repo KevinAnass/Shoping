@@ -26,7 +26,7 @@
       <ul class="dropdown-menu">
         <li><a (click)="setShoppongList(DetailRecipe.ingredients)">To Shopping List</a></li>
         <li><a [routerLink]="['edit']">Edit Recipe</a></li>
-        <li><a >Delete Recipe</a></li>
+        <li><a (click)="onDelete()" style="cursor: pointer">Delete Recipe</a></li>
       </ul>
     </div>
   </div>
@@ -41,7 +41,7 @@
     <ul class="list-group">
       <a style="cursor: pointer" class="list-group-item"
          *ngFor="let ingredient of DetailRecipe?.ingredients">
-        {{ingredient.name}} => {{ingredient.ammount}}
+        {{ingredient.name}} => {{ingredient.amount}}
       </a>
     </ul>
   </div>

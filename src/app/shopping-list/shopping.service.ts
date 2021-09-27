@@ -11,12 +11,28 @@ export class ShoppingService {
     new Ingredient('Orange', 7)
   ];
   IngredientAdded = new Subject<Ingredient[]>();
+  startEditing = new Subject<number>()
 
   constructor() {
   }
 
   getIngeredients() {
     return this.ingredients.slice();
+  }
+
+  getItem(id:number){
+    return this.ingredients[id];
+  }
+
+  onEdit(id:number,ingredient:Ingredient){
+    this.ingredients[id]=ingredient;
+    console.log(this.ingredients);
+    this.IngredientAdded.next(this.getIngeredients());
+  }
+
+  onDelete(id:number){
+    this.ingredients.splice(id,1);
+    this.IngredientAdded.next(this.getIngeredients());
   }
 
   setIngredients(ingredients: Ingredient[]) {
@@ -28,5 +44,4 @@ export class ShoppingService {
     this.ingredients.push(ingredient);
     this.IngredientAdded.next(this.getIngeredients());
   }
-
 }
